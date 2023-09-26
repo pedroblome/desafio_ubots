@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,13 @@ public class PessoaController {
     @PostMapping("/criar")
     public ResponseEntity<?> criarPessoa(@RequestBody Pessoa pessoa) {
         Pessoa newPessoa = pessoaService.criarPessoa(pessoa);
+        return ResponseEntity.ok().body(newPessoa);
+
+    }
+
+    @PutMapping("/editar")
+    public ResponseEntity<?> editarPessoa(@RequestBody Pessoa pessoa) {
+        Pessoa newPessoa = pessoaService.editarPessoa(pessoa);
         return ResponseEntity.ok().body(newPessoa);
 
     }
