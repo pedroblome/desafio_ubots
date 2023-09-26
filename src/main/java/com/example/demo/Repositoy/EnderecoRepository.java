@@ -11,5 +11,8 @@ import com.example.demo.Model.Pessoa;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Integer>{
     
+    List<Endereco> findByPessoaId(Integer idPessoa);
+
     List<Endereco> findByPessoa(Pessoa pessoa);
+
 }

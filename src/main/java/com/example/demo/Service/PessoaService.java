@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.swing.text.html.Option;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,40 +39,24 @@ public class PessoaService {
         return updatePessoa;
     }
 
-    // retorna apenas os dados de pessoa
-    public PessoaDTO consultarPessoa(Integer id) {
+    public Pessoa consultarPessoa(Integer id) {
         Optional<Pessoa> findPessoa = pessoaRepository.findById(id);
         if (findPessoa == null) {
             throw new IllegalArgumentException("Id de pessoa nao achado no sistema.");
         }
         Pessoa pessoa = findPessoa.get();
-        PessoaDTO findPessoaDto = new PessoaDTO(pessoa.getId(), pessoa.getNome(), pessoa.getDataNascimento());
-        return findPessoaDto;
+        return pessoa;
     }
 
-    // retorna pessoa com dados de enderecos
-    public Optional<Pessoa> consultarPessoaComEndereco(Integer id) {
-        Optional<Pessoa> findPessoa = pessoaRepository.findById(id);
-        if (findPessoa == null) {
-            throw new IllegalArgumentException("Id de pessoa nao achado no sistema.");
+
+    public List<Pessoa> consultarPessoas() {
+        List<Pessoa> findPessoas = pessoaRepository.findAll();
+        if(findPessoas.isEmpty()){
+            throw new IllegalArgumentException("Nao ha pessoas cadastradas no sistema.");
+
         }
-        return findPessoa;
-    }
-
-    // retorna apenas os dados de pessoa
-    public List<PessoaDTO> consultarPessoas() {
-        List<Pessoa> findPessoas = pessoaRepository.findAll();
-        List<PessoaDTO> pessoasDTOs = findPessoas.stream()
-                .map(pessoa -> new PessoaDTO(pessoa.getId(), pessoa.getNome(), pessoa.getDataNascimento()))
-                .collect(Collectors.toList());
-        return pessoasDTOs;
-    }
-
-    // retorna pessoa com dados de enderecos
-    public List<Pessoa> consultarPessoasComEndereco() {
-        List<Pessoa> findPessoas = pessoaRepository.findAll();
         return findPessoas;
-
     }
+
 
 }

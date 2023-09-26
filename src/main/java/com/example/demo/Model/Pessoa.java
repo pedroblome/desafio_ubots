@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +27,12 @@ public class Pessoa {
     private String nome;
     private LocalDate dataNascimento;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos;
 
-
+    
     public Pessoa(Integer id, String nome, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;

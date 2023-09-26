@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Model.Endereco;
 import com.example.demo.Model.Pessoa;
-import com.example.demo.Model.PessoaDTO;
 import com.example.demo.Repositoy.EnderecoRepository;
 import com.example.demo.Repositoy.PessoaRepository;
 

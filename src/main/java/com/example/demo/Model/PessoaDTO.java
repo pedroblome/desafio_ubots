@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,4 +20,5 @@ public class PessoaDTO {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
     }
+    
 }
