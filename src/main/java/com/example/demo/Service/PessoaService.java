@@ -19,7 +19,7 @@ public class PessoaService {
         }
     }
 
-    private Pessoa criarPessoa(Pessoa pessoa){
+    public Pessoa criarPessoa(Pessoa pessoa){
         validarPessoa(pessoa);
         Pessoa newPessoa = pessoaRepository.save(pessoa);
         return newPessoa;

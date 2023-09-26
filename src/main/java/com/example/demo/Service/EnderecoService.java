@@ -32,7 +32,7 @@ public class EnderecoService {
         }
     }
 
-    private Endereco criarEndereco(Endereco endereco) {
+    public Endereco criarEndereco(Endereco endereco) {
         validarEndereco(endereco);
         Endereco newEndereco = enderecoRepository.save(endereco);
         return newEndereco;
