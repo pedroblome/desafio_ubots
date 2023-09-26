@@ -23,6 +23,7 @@ public class Endereco {
     private String cep;
     private Integer numero;
     private String cidade;
+    private Boolean endPrincipal;
 
     @ManyToOne
     @JoinColumn(name = "pessoa_id")

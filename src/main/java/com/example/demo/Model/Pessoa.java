@@ -27,5 +27,12 @@ public class Pessoa {
 
     @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos;
+
+
+    public Pessoa(Integer id, String nome, LocalDate dataNascimento) {
+        this.id = id;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+    }
     
 }
