@@ -1,103 +1,103 @@
-# Desafui backend Attornatus
+# Desafio Backend Attornatus
 
-Crição de api usando springboot com as as seguintes funcionalidades:
+Este projeto consiste na criação de uma API usando Spring Boot com as seguintes funcionalidades:
+
 - Criar uma pessoa
-
 - Editar uma pessoa
-
 - Consultar uma pessoa
-
 - Listar pessoas
+- Criar endereço para uma pessoa
+- Listar endereços de uma pessoa
+- Definir o endereço principal de uma pessoa
 
-- Criar endereço para pessoa
+## Arquitetura e Tecnologias
 
-- Listar endereços da pessoa
-
-- Poder informar qual endereço é o principal da pessoa
-
-Foi Usado uma arquiteura baseada em Model-Service-Controller-Repository, usando o JpaRepository como orm entre a tabela do banco de dados e as entidades na aplicação sringboot.
-Foi usado um banco em memoria h2 apenas para testar os endpoints e seus respectivos metodos.
+O projeto utiliza uma arquitetura baseada no padrão Model-Service-Controller-Repository, onde o JpaRepository é usado como ORM (Object-Relational Mapping) para mapear as tabelas do banco de dados com as entidades da aplicação Spring Boot. Um banco de dados em memória H2 foi utilizado para testar os endpoints e seus respectivos métodos.
 
 ## Endpoints para Pessoa
 
+### Cadastrar Pessoa
 
-### Cadastrar pessoa
+**Requisição POST**
 
-Requisição POST
+URL: http://localhost:8080/pessoa/criar
 
-url: http://localhost:8080/pessoa/criar
-
-body:
-{"nome": "joao souza",
+Body:
+```json
+{
+    "nome": "João Souza",
     "dataNascimento": "2000-12-12"
 }
+```
 
+### Editar Pessoa
 
+**Requisição PUT**
 
-### Editar pessoaRequisição GET
-Requisição PUT
+URL: http://localhost:8080/pessoa/editar
 
-url: http://localhost:8080/pessoa/editar
-
-body:
-
-    {
-    "id":1,
-    "nome": "joao souza",
+Body:
+```json
+{
+    "id": 1,
+    "nome": "João Souza",
     "dataNascimento": "2000-12-12"
-    }
-### Listar todas as pessoas
-Requisição GET
+}
+```
 
-url: http://localhost:8080/pessoa/consultar
+### Listar Todas as Pessoas
 
+**Requisição GET**
 
+URL: http://localhost:8080/pessoa/consultar
 
-### Listar pessoa pelo id
-Requisição GET
+### Listar Pessoa por ID
 
-url: http://localhost:8080/pessoa/consultar/{id}
+**Requisição GET**
 
+URL: http://localhost:8080/pessoa/consultar/{id}
 
 ## Endpoints para Endereço
 
-### Cadastrar endereço
-Requisição POST
+### Cadastrar Endereço
 
-url: http://localhost:8080/endereco/criar
+**Requisição POST**
 
-body:
+URL: http://localhost:8080/endereco/criar
 
-    {
-    "logadouro": "avenida Marechal neto",
+Body:
+```json
+{
+    "logradouro": "Avenida Marechal Neto",
     "cep": "72820200",
     "numero": 150,
-    "cidade": "Luziania",
-    "pessoa":{
+    "cidade": "Luziânia",
+    "pessoa": {
         "id": 1
     }
+}
+```
 
-### listar todos endereços
-Requisição GET
+### Listar Todos os Endereços
 
-url: http://localhost:8080/endereco/consultar
+**Requisição GET**
 
-### listar endereço pelo id
-Requisição GET
+URL: http://localhost:8080/endereco/consultar
 
-url: http://localhost:8080/endereco/consultar/{id}
+### Listar Endereço por ID
 
-### listar endereços pelo id da pessoa 
-Requisição GET
+**Requisição GET**
 
-url: http://localhost:8080/endereco/consultarIdPessoa{id}
+URL: http://localhost:8080/endereco/consultar/{id}
 
-### informar qual endereço é o principal
-Requisição PUT  
+### Listar Endereços por ID da Pessoa
 
+**Requisição GET**
 
+URL: http://localhost:8080/endereco/consultarIdPessoa/{id}
 
+### Definir o Endereço Principal por ID do Endereço
 
+**Requisição PUT**
 
-
-
+URL: http://localhost:8080/endereco/mudarPrincipal/{id}
