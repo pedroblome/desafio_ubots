@@ -53,9 +53,9 @@ public class EnderecoController {
 
     }
 
-    @PutMapping("/enderecoPrincipal/{id}")
+    @PutMapping("/mudarPrincipal/{id}")
     public ResponseEntity<?> mudaEnderecoPrincipal(@PathVariable Integer id) {
-        Optional<Endereco> endereco = enderecoService.setEnderecoPrincipal(id);
+        Endereco endereco = enderecoService.setEnderecoPrincipal(id);
         return ResponseEntity.ok().body(endereco);
 
     }

@@ -35,8 +35,9 @@ public class EnderecoService {
 
     private void negaEnderecoPrincipalByPessoa(Pessoa pessoa) {
         List<Endereco> listEnderecos = enderecoRepository.findByPessoa(pessoa);
-        for (Endereco endereo : listEnderecos) {
-            endereo.setEndPrincipal(false);
+        for (Endereco endereco : listEnderecos) {
+            endereco.setEndPrincipal(false);
+            enderecoRepository.save(endereco);
         }
 
     }
@@ -87,13 +88,22 @@ public class EnderecoService {
         return enderecosPessoa;
     }
 
-    public Optional<Endereco> setEnderecoPrincipal(Integer id) {
+    public Endereco setEnderecoPrincipal(Integer id) {
         Optional<Endereco> findEndereco = enderecoRepository.findById(id);
+        if (findEndereco == null) {
+            throw new IllegalArgumentException("Nao ha endereços para este id");
+        }
+        Endereco newEndereco = findEndereco.get();
+
         Pessoa findPessoa = findEndereco.get().getPessoa();
+
+        //nega todos os outros endereços principais
         negaEnderecoPrincipalByPessoa(findPessoa);
-        findEndereco.get().setEndPrincipal(true);
+
+        newEndereco.setEndPrincipal(true);
+        enderecoRepository.save(newEndereco);
         // setar falso para outro end principal que contenha o mesmo idPessoa
-        return findEndereco;
+        return newEndereco;
 
     }
 }
