@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        run: docker build -t your-app:latest .
+
+      - name: Push Docker Image to DigitalOcean Container Registry
+        run: |
+          echo $DIGITALOCEAN_REGISTRY_PASSWORD | docker login -u $DIGITALOCEAN_REGISTRY_USER --password-stdin registry.digitalocean.com
+          docker tag your-app:latest registry.digitalocean.com/your-registry/your-app:latest
+          docker push registry.digitalocean.com/your-registry/your-app:latest
+
+      - name: SSH into DigitalOcean Droplet
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            docker pull registry.digitalocean.com/your-registry/your-app:latest
+            docker stop your-app || true
+            docker rm your-app || true
+            docker run -d -p 8080:8080 --name your-app registry.digitalocean.com/your-registry/your-app:latest
