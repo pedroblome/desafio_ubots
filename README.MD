@@ -14,13 +14,34 @@ Este projeto consiste na criação de uma API usando Spring Boot com as seguinte
 
 O projeto utiliza uma arquitetura baseada no padrão Model-Service-Controller-Repository, onde o JpaRepository é usado como ORM (Object-Relational Mapping) para mapear as tabelas do banco de dados com as entidades da aplicação Spring Boot. Um banco de dados em memória H2 foi utilizado para testar os endpoints e seus respectivos métodos.
 
+## Iniciando o projeto
+
+Com o Git na sua máquina, clone o repositório através do comando:
+
+```
+git clone https://github.com/pedroblome/attornatus
+```
+
+Uma vez que tenha clonado e com o Maven instalado na sua máquina (pode ser baixado no Ubuntu da seguinte forma):
+
+```bash
+sudo apt update
+sudo apt install maven
+```
+
+Após fazer isso, é necessário apenas baixar as dependências da aplicação e executá-la, o que pode ser feito através do seguinte comando:
+
+```bash
+mvn install spring-boot:run
+```
+
 ## Endpoints para Pessoa
 
 ### Cadastrar Pessoa
 
 **Requisição POST**
 
-URL: http://localhost:8080/pessoa/criar
+URL: `http://localhost:8080/pessoa/criar`
 
 Body:
 ```json
@@ -34,7 +55,7 @@ Body:
 
 **Requisição PUT**
 
-URL: http://localhost:8080/pessoa/editar
+URL: `http://localhost:8080/pessoa/editar`
 
 Body:
 ```json
@@ -49,13 +70,13 @@ Body:
 
 **Requisição GET**
 
-URL: http://localhost:8080/pessoa/consultar
+URL: `http://localhost:8080/pessoa/consultar`
 
 ### Listar Pessoa por ID
 
 **Requisição GET**
 
-URL: http://localhost:8080/pessoa/consultar/{id}
+URL: `http://localhost:8080/pessoa/consultar/{id}`
 
 ## Endpoints para Endereço
 
@@ -63,7 +84,7 @@ URL: http://localhost:8080/pessoa/consultar/{id}
 
 **Requisição POST**
 
-URL: http://localhost:8080/endereco/criar
+URL: `http://localhost:8080/endereco/criar`
 
 Body:
 ```json
@@ -82,22 +103,22 @@ Body:
 
 **Requisição GET**
 
-URL: http://localhost:8080/endereco/consultar
+URL: `http://localhost:8080/endereco/consultar`
 
 ### Listar Endereço por ID
 
 **Requisição GET**
 
-URL: http://localhost:8080/endereco/consultar/{id}
+URL: `http://localhost:8080/endereco/consultar/{id}`
 
 ### Listar Endereços por ID da Pessoa
 
 **Requisição GET**
 
-URL: http://localhost:8080/endereco/consultarIdPessoa/{id}
+URL: `http://localhost:8080/endereco/consultarIdPessoa/{id}`
 
 ### Definir o Endereço Principal por ID do Endereço
 
 **Requisição PUT**
 
-URL: http://localhost:8080/endereco/mudarPrincipal/{id}
+URL: `http://localhost:8080/endereco/mudarPrincipal/{id}`
